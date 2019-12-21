@@ -1,37 +1,49 @@
 <?php
+ 
+/* Clase encargada de gestionar las conexiones a la base de datos */
+class ConexionDB{
+   private $servidor='localhost';
+   private $usuario='usuarioweb';
+   private $password='abcd123';
+   private $base_datos='desarrolloweb';
+   private $conexion;
+   private $stmt;
+   //private $array;
+ 
+   static $_instance;
+ 
+   /*La función construct es privada para evitar que el objeto pueda ser creado mediante new*/
+   private function __construct(){
+      $this->conectar();
+   }
+ 
+   /*Evitamos el clonaje del objeto. Patrón Singleton*/
+   private function __clone(){ }
+ 
+   /*Función encargada de crear, si es necesario, el objeto. Esta es la función que debemos llamar desde fuera de la clase para instanciar el objeto, y así, poder utilizar sus métodos*/
+   public static function getInstance(){
+      if (!(self::$_instance instanceof self)){
+         self::$_instance=new self();
+      }
+      return self::$_instance;
+   }
+ 
+   /*Realiza la conexión a la base de datos.*/
 
-// Clase Conexión: singleton a la base de datos
-class Conexionbd {
-  // Hold the class instance.
-  private static $instancia = null;
-  private $conn;
-  
-  private $host = 'localhost';
-  private $user = 'usuarioweb';
-  private $pass = 'abcd123';
-  private $name = 'desarrolloweb';
-   
-  // Constructor: para establecer conexion con la base de datos
-  private function __construct()
-  {
-    $this->conn = new PDO("mysql:host={$this->host};
-    dbname={$this->name}", $this->user,$this->pass);
-    $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   private function conectar(){
+
+      $dsn= "mysql:host=" . $this->servidor . ";" . "dbname=" . $this->base_datos;
+      $this->conexion = new PDO($dsn,$this->usuario,$this->password) or die ("No se pudo establecer conexión con la base de datos");
   }
-  
-  public static function getInstancia()
-  {
-    if(!self::$instancia)
-    {
-      self::$instancia = new Conexionbd();
-    }
-   
-    return self::$instancia;
+	
+  public function desconectar(){
+    $this->conexion = null;
   }
-  
-  public function getConexion()
-  {
-    return $this->conn;
+
+  public function prepararQuery($query){
+    $this->conectar();
+    $res = $this->conexion->prepare($query) or die ("No se pudo procesar la consulta");
+    return $res;	
   }
 }
 ?>

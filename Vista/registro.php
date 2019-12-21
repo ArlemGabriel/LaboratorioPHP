@@ -22,6 +22,7 @@
 </head>
 
 <body>
+<?php session_start(); ?>
 <div class="jumbotron text-center" style="margin-bottom:0" id = "encabezadoinicio">
   <h1 id = "datosencabezadoinicio">Introducción al Desarrollo de Páginas Web</h1>
   <p id = "datosencabezadoinicio">Página de Registro</p> 
@@ -55,7 +56,7 @@
             <form class="form-register" onsubmit="return validar();" action="../Controlador/controladorusuarios.php" method="POST">
 
               <div class="form-label-group">
-                <input type="text" id="inputUsername" name="registusername" class="form-control" placeholder="Username">
+                <input type="text" id="inputUsername" name="registusername" class="form-control" placeholder="Username" value= <?php if(isset($_SESSION["campoNombreUsuario"])){ $nombre = $_SESSION["campoNombreUsuario"];echo $nombre;unset($_SESSION["campoNombreUsuario"]);}?>>
                 <small id="passwordHelpBlock" class="form-text text-muted">
                   Su nombre de usuario debe contener de 3-16 caracteres, puede contener letras y números, guiones bajos _ y guiones altos -
                 </small>
@@ -68,12 +69,12 @@
               </div>
 
               <div class="form-label-group">
-                <input type="text" id="inputName" name="registname" class="form-control" placeholder="Name">
+                <input type="text" id="inputName" name="registname" class="form-control" placeholder="Name" value= <?php if(isset($_SESSION["campoNombre"])){ $nombre = $_SESSION["campoNombre"];echo $nombre;unset($_SESSION["campoNombre"]);}?>>
                 <label for="inputName">Nombre*</label>
               </div>
 
               <div class="form-label-group">
-                <input type="text" id="inputLastName" name="registlastname" class="form-control" placeholder="LastName">
+                <input type="text" id="inputLastName" name="registlastname" class="form-control" placeholder="LastName"value= <?php if(isset($_SESSION["campoApellidos"])){ $nombre = $_SESSION["campoApellidos"];echo $nombre;unset($_SESSION["campoApellidos"]);}?>>
                 <label for="inputLastName">Apellidos*</label>
               </div>
 
@@ -82,7 +83,7 @@
               </div>
 
               <div class="form-label-group">
-                <input type="email" id="inputEmail" name="registemail" class="form-control" placeholder="Email address">
+                <input type="email" id="inputEmail" name="registemail" class="form-control" placeholder="Email address"value= <?php if(isset($_SESSION["campoCorreo"])){ $nombre = $_SESSION["campoCorreo"];echo $nombre;unset($_SESSION["campoCorreo"]);}?>>
                 <label for="inputEmail">Correo Electrónico*</label>
               </div>
 
@@ -91,7 +92,7 @@
               </div>
 
                 <div class="form-label-group date ag-date">
-                  <input type="text" id="inputBirth" name="registbirth" class="form-control">
+                  <input type="text" id="inputBirth" name="registbirth" class="form-control" value= <?php if(isset($_SESSION["campoFecha"])){ $nombre = $_SESSION["campoFecha"];echo $nombre;unset($_SESSION["campoFecha"]);}?>>
                   <label for="inputBirth">Fecha de Nacimiento</label>
                   <span class="input-group-addon">
                   </span>
@@ -99,7 +100,7 @@
               <script src="js/registro.js"></script>
          
               <div class="form-label-group">
-                <input type="number" id="inputNumber" name="registnumber" class="form-control" placeholder="Phone Number">
+                <input type="number" id="inputNumber" name="registnumber" class="form-control" placeholder="Phone Number" value= <?php if(isset($_SESSION["campoNumero"])){ $nombre = $_SESSION["campoNumero"];echo $nombre;unset($_SESSION["campoNumero"]);}?>>
                 <label for="inputNumber">Telefono</label>
               </div>
               <div class="alert alert-danger fade show" style="display:none;" role="alert" id="telefonoalert">
@@ -131,6 +132,14 @@
               <div class="alert alert-danger fade show" style="display:none;" role="alert" id="camposobligatoriosalert">
                 <strong>Error: </strong> Los campos con * son obligatorios
               </div>
+
+              <?php 
+                if(isset($_SESSION["errorRegistro"])){ 
+                  $error = $_SESSION["errorRegistro"]; 
+                  echo '<div class="alert alert-danger fade show" role="alert" id="authalert">' . $error . '</div>';
+                  unset($_SESSION['errorRegistro']);
+                }
+              ?>
 
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registrarse</button>
               <a class="d-block text-center mt-2 small" href="autenticacion.php">Acceder</a>

@@ -10,7 +10,6 @@
         $pcontrasenna = htmlentities(addslashes($_POST["authpass"]));
         $authusuario= new Usuario($pnombreusuario,"","","","","",$pcontrasenna);
         if(validarAutenticacion($authusuario)==false){
-            //echo "No existe ese usuario"; //TODO
             $errorLogin = "Nombre de usuario y/o contraseña incorrectos";
             $sesion->setErrorLogin($errorLogin);
             header("location:../Vista/autenticacion.php");
@@ -37,8 +36,18 @@
 
         if(validarRegistro($registusuario)==false){
             registrarUsuario($registusuario);
+            //TODO: Establecer una variable de sesion que permita mostrar el registro solamente a un usuario que hace submit en registro
         }else{
             echo "Existe ese usuario"; //TODO
+            $errorRegistro = "Nombre de usuario y/o correo ya registrado";
+            $sesion->setErrorRegistro($errorRegistro);
+            $sesion->setCampoNombre($pnombre);
+            $sesion->setCampoApellidos($papellidos);
+            $sesion->setCampoNombreUsuario($pnombreusuario);
+            $sesion->setCampoCorreo($pcorreo);
+            $sesion->setCampoFecha($pfechanacimiento);
+            $sesion->setCampoNumero($ptelefono);
+            header("location:../Vista/registro.php");
         }
     }else{
         echo "Ninguno";

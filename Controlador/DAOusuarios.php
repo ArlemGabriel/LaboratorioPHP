@@ -46,7 +46,6 @@
             
             return false;
         }else{
-            //AQUI CREARIA UNA NUEVA SESION CON ESE USUARIO, NOMBRE, APELLIDOS PARA MOSTRAR EN LA PAGINA DEL PERFIL
             return true;
         }
     }
@@ -64,15 +63,6 @@
             $authusuario->setApellidos($row['apellidos']);
             $authusuario->setNombre($row['nombre']);
             return $authusuario;
-            /*echo $row['nombre'].'<br>';
-            echo $row['apellidos'].'<br>';
-            echo $row['nombreusuario'].'<br>';*/
-            
-
-            /*while ($row = $resultado->fetch_assoc()) {
-                echo 'Name and surname: '.$row['name'].' '.$row['surname'].'<br>';
-                echo 'Age: '.$row['age'].'<br>'; // Prints info from 'age' column
-            }*/
         }else{
             echo "Error: Hay más de un usuario con el mismo nombre de usuario";
         }

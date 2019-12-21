@@ -33,6 +33,48 @@ class SesionUsuario{
     public function unsetErrorLogin(){
         unset($_SESSION['errorLogin']);
     }
+    public function setErrorRegistro($errorRegistro){
+        $_SESSION['errorRegistro'] = $errorRegistro;
+    }
+    public function unsetErrorRegistro(){
+        unset($_SESSION['errorRegistro']);
+    }
+    public function setCampoNombre($campoNombre){
+        $_SESSION['campoNombre'] = $campoNombre;
+    }
+    public function unsetCampoNombre(){
+        unset($_SESSION['campoNombre']);
+    }
+    public function setCampoApellidos($campoApellidos){
+        $_SESSION['campoApellidos'] = $campoApellidos;
+    }
+    public function unsetCampoApellidos(){
+        unset($_SESSION['campoApellidos']);
+    }
+    public function setCampoNombreUsuario($campoNombreUsuario){
+        $_SESSION['campoNombreUsuario'] = $campoNombreUsuario;
+    }
+    public function unsetCampoNombreUsuario(){
+        unset($_SESSION['campoNombreUsuario']);
+    }
+    public function setCampoCorreo($campoCorreo){
+        $_SESSION['campoCorreo'] = $campoCorreo;
+    }
+    public function unsetCampoCorreo(){
+        unset($_SESSION['campoCorreo']);
+    }
+    public function setCampoFecha($campoFecha){
+        $_SESSION['campoFecha'] = $campoFecha;
+    }
+    public function unsetCampoFecha(){
+        unset($_SESSION['campoFecha']);
+    }
+    public function setCampoNumero($campoNumero){
+        $_SESSION['campoNumero'] = $campoNumero;
+    }
+    public function unsetCampoNumero(){
+        unset($_SESSION['campoNumero']);
+    }
 }
 
 ?>

@@ -14,16 +14,12 @@
         $pcontrasenna = htmlentities(addslashes($_POST["registpassword"]));
         $registusuario= new Usuario($pnombreusuario,$pnombre,$papellidos,$pcorreo,$pfechanacimiento,$ptelefono,$pcontrasenna);
 
-        validarRegistro($registusuario);
-        //
-        /*echo $authusuario->getNombreUsuario() . " ";
-        echo $authusuario->getNombre() . " ";
-        echo $authusuario->getApellidos() . " ";
-        echo $authusuario->getCorreo() . " ";
-        echo $authusuario->getFechaNacimiento() . " ";
-        echo $authusuario->getTelefono() . " ";
-        echo $authusuario->getContrasenna() . " ";*/
-        echo "Registro de usuario nuevo";
+        if(validarRegistro($registusuario)==false){
+            echo "No existe ese usuario";
+            registrarUsuario($registusuario);
+        }else{
+            echo "Existe ese usuario";
+        }
     }else{
         echo "Ninguno";
     }

@@ -4,8 +4,6 @@
     require_once 'C:\xampp\htdocs\Controlador\ConexionDB.php';
 
     function validarRegistro($registusuario){
-        /*$base = new PDO("mysql:host=localhost; dbname=desarrolloweb","usuarioweb","abcd123");
-        $base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);*/
         $base=ConexionDB::getInstance();     
         $sql = 'CALL validatenewuser(:correo,:nombreusuario)';
         $resultado = $base->prepararQuery($sql);
@@ -35,8 +33,25 @@
         header("location:../Vista/registroexitoso.php");
 
     }
-    function validarAutenticacion(){
-        echo "validar autenticacion";
+    function validarAutenticacion($authusuario){
+        $base=ConexionDB::getInstance($authusuario);     
+        $sql = 'CALL validatecredentials(:nombreusuario,:contrasenna)';
+        $resultado = $base->prepararQuery($sql);
+        $resultado->bindValue(":nombreusuario",$authusuario->getNombreUsuario());
+        $resultado->bindValue(":contrasenna",$authusuario->getContrasenna());
+        $resultado->execute();
+        $numeroregistro = $resultado->rowCount();
+
+        if($numeroregistro == 0){
+            return false;
+        }else{
+            //AQUI CREARIA UNA NUEVA SESION CON ESE USUARIO, NOMBRE, APELLIDOS PARA MOSTRAR EN LA PAGINA DEL PERFIL
+            return true;
+        }
+    }
+    function loginUsuario(){
+        //TODO: Mostrar el nombre y los apellidos del usuario que se autentico
+        header("location:../Vista/perfilusuario.php");
     }
 
 ?>

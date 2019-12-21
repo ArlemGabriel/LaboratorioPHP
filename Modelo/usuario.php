@@ -23,8 +23,14 @@
         public function getNombre(){
             return $this->nombre;
         }
+        public function setNombre($pnombre){
+            $this->nombre = $pnombre;
+        }
         public function getApellidos(){
             return $this->apellidos;
+        }
+        public function setApellidos($papellidos){
+            $this->apellidos = $papellidos;
         }
         public function getCorreo(){
             return $this->correo;

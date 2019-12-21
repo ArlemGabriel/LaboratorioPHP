@@ -43,15 +43,39 @@
         $numeroregistro = $resultado->rowCount();
 
         if($numeroregistro == 0){
+            
             return false;
         }else{
             //AQUI CREARIA UNA NUEVA SESION CON ESE USUARIO, NOMBRE, APELLIDOS PARA MOSTRAR EN LA PAGINA DEL PERFIL
             return true;
         }
     }
-    function loginUsuario(){
+    function loginUsuario($authusuario){
         //TODO: Mostrar el nombre y los apellidos del usuario que se autentico
-        header("location:../Vista/perfilusuario.php");
+        $base=ConexionDB::getInstance();
+        $sql = 'CALL getuserdata(:nombreusuario)';
+        $resultado = $base->prepararQuery($sql);
+        $resultado->bindValue(":nombreusuario",$authusuario->getNombreUsuario());
+        $resultado->execute();
+        $numeroregistro = $resultado->rowCount();
+        if($numeroregistro == 1){
+            echo "Login exitoso";
+            $row = $resultado->fetch(PDO::FETCH_ASSOC);
+            $authusuario->setApellidos($row['apellidos']);
+            $authusuario->setNombre($row['nombre']);
+            return $authusuario;
+            /*echo $row['nombre'].'<br>';
+            echo $row['apellidos'].'<br>';
+            echo $row['nombreusuario'].'<br>';*/
+            
+
+            /*while ($row = $resultado->fetch_assoc()) {
+                echo 'Name and surname: '.$row['name'].' '.$row['surname'].'<br>';
+                echo 'Age: '.$row['age'].'<br>'; // Prints info from 'age' column
+            }*/
+        }else{
+            echo "Error: Hay más de un usuario con el mismo nombre de usuario";
+        }
     }
 
 ?>

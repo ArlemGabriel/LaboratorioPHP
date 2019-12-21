@@ -1,0 +1,33 @@
+#encabezadoinicio{
+    background-image: url(../Recursos/city.jpg);
+    background-size: cover;
+}
+#piepagina{
+    background-image: url(../Recursos/bgfooter.jpg);
+    background-size: cover;
+}
+
+#datosencabezadoinicio{
+    color: white;
+}
+#submenuinicio{
+    text-align: right;
+}
+
+#bg-orange{
+    background-color: dodgerblue;
+}
+#icongit{
+    width:50px;
+    height:50px;
+}
+#iconfb{
+    width:58px;
+    height:58px;
+}
+#nombreperfil{
+    color: white;
+}
+#usuarioperfil{
+    color: white;
+}

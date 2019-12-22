@@ -1,11 +1,9 @@
 <?php
- 
+
+require_once 'C:\xampp\htdocs\Modelo\config.php';
+
 /* Clase encargada de gestionar las conexiones a la base de datos */
 class ConexionDB{
-   private $servidor='localhost';
-   private $usuario='usuarioweb';
-   private $password='abcd123';
-   private $base_datos='desarrolloweb';
    private $conexion;
    private $stmt;
    //private $array;
@@ -32,8 +30,8 @@ class ConexionDB{
 
    private function conectar(){
 
-      $dsn= "mysql:host=" . $this->servidor . ";" . "dbname=" . $this->base_datos;
-      $this->conexion = new PDO($dsn,$this->usuario,$this->password) or die ("No se pudo establecer conexión con la base de datos");
+      $dsn= "mysql:host=" . servidor . ";" . "dbname=" . base_datos;
+      $this->conexion = new PDO($dsn,usuario,password) or die ("No se pudo establecer conexión con la base de datos");
   }
 	
   public function desconectar(){

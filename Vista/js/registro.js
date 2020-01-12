@@ -1,5 +1,5 @@
 $('.ag-date').datepicker({
-    format: "dd/mm/yyyy"
+    format: "yyyy/mm/dd"
 });
 
 
@@ -17,8 +17,6 @@ function validar() {
     exprcontrasena = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
     expnombreapellido = /^[a-zA-Z  ]+$/
     exprusuario = /^[a-zA-Z0-9_-]{3,16}$/
-
-    console.log("ENTRE");
         
     if(usuario.length === "" || nombre.length === "" || apellidos === "" || contrasena === "" || correo === ""){
         $('#camposobligatoriosalert').show();

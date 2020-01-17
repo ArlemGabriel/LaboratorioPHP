@@ -39,6 +39,12 @@ class SesionUsuario{
     public function unsetErrorRegistro(){
         unset($_SESSION['errorRegistro']);
     }
+    public function setErrorContra($errorContra){
+        $_SESSION['errorContra'] = $errorContra;
+    }
+    public function unsetErrorContra(){
+        unset($_SESSION['errorContra']);
+    }
     public function setCampoNombre($campoNombre){
         $_SESSION['campoNombre'] = $campoNombre;
     }

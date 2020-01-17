@@ -8,13 +8,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="CSS/estilosrecuperarcontra.css">
+  <link rel="stylesheet" type="text/css" href="CSS/estiloregistroexitoso.css">
 </head>
 <body>
 
 <div class="jumbotron text-center" style="margin-bottom:0" id = "encabezadoinicio">
   <h1 id = "datosencabezadoinicio">Introducción al Desarrollo de Páginas Web</h1>
-  <p id = "datosencabezadoinicio">Página de Recuperación de Contraseña</p>
+  <p id = "datosencabezadoinicio">Página de Cambio Contraseña Exitoso</p>
 </div>
 
 <nav class="navbar navbar-expand-sm navbar-dark" id="bg-orange">
@@ -31,16 +31,11 @@
            <!-- Background image for card set in CSS! -->
         </div>
         <div class="card-body">
-          <h5 class="card-title text-center">¿Olvidó su contraseña?</h5>
-          <h6>Ingrese su correo electrónico, enviaremos un link para reestablecer su contraseña</h6>
+          <h5 class="card-title text-center">¡Enhorabuena!</h5>
+          <h6>Su cambio de contraseña se ha realizado de manera exitosa, puede volver a la página principal o dar click en el siguiente link para acceder con sus credenciales</h6>
           <br>
+          <a href="autenticacion.php">Acceder</a>
           <form class="form-signin">
-            <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
-                <label for="inputEmail">Correo Electrónico</label>
-              </div>
-
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Enviar Link</button>
             <hr class="my-4">
           </form>
         </div>
@@ -56,7 +51,7 @@
   </a>
   <a href="https://www.facebook.com/arlemgabriel.brenesaguilar">
     <img src="Recursos/iconfb.png" alt="Icono Facebook" width="200" height="200" id="iconfb">
-</a>
+  </a>
 </div>
 
 </body>

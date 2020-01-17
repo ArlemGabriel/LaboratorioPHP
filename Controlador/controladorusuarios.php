@@ -49,6 +49,20 @@
             $sesion->setCampoNumero($ptelefono);
             header("location:../Vista/registro.php");
         }
+    }else if(isset($_POST['inputEmailForgot']) && isset($_POST['inputPassForgot']) && isset($_POST['inputConfirmPassForgot'])){
+        echo "RECUPERAR CONTRASENNA";
+        $pemail = htmlentities(addslashes($_POST["inputEmailForgot"]));
+        $pnuevacontrasenna = htmlentities(addslashes($_POST["inputPassForgot"]));
+        $authusuario= new Usuario("","","",$pemail,"","",$pnuevacontrasenna);
+        if(validarExistenciUsuario($authusuario)==false){
+           
+            $errorContra = "Ooops! No pudimos cambiar tu contraseña, ese usuario no se encuentra registrado";
+            $sesion->setErrorContra($errorContra);
+            header("location:../Vista/recuperarcontra.php");
+            
+        }else{
+            cambiarContrasenna($authusuario);
+        }
     }else{
         echo "Ninguno";
     }

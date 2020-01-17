@@ -52,7 +52,7 @@
             <div class="form-label-group">
               <input type="password" id="authpass" name="authpass"class="form-control" placeholder="Authpassword" required>
               <label for="authpass">Contraseña</label>
-              <a class="d-block text-left mt-2 small" href="recuperarcontraseña.php">¿Olvidó su contraseña?</a>
+              <a class="d-block text-left mt-2 small" href="recuperarcontra.php">¿Olvidó su contraseña?</a>
             </div>
 
             <div class="alert alert-danger fade show" style="display:none;" role="alert" id="authalert">

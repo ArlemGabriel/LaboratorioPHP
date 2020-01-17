@@ -1,9 +1,8 @@
-$('.ag-date').datepicker({
-    format: "yyyy/mm/dd"
-});
-
 
 function validar() {
+    $('.ag-date').datepicker({
+        format: "yyyy/mm/dd"
+    });
     var nombre, apellidos, usuario, correo, telefono,contrasena,confcontrasena,exprcorreo,exprtelefono,exprcontrasena,expnombreapellido,exprusuario;
     nombre = document.getElementById("inputName").value;
     apellidos = document.getElementById("inputLastName").value;
@@ -17,6 +16,8 @@ function validar() {
     exprcontrasena = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
     expnombreapellido = /^[a-zA-Z  ]+$/
     exprusuario = /^[a-zA-Z0-9_-]{3,16}$/
+
+    console.log("ENTRE");
         
     if(usuario.length === "" || nombre.length === "" || apellidos === "" || contrasena === "" || correo === ""){
         $('#camposobligatoriosalert').show();
@@ -60,7 +61,40 @@ function validar() {
     }else{
         $('#usuarioalert').hide();
     }
+}
+function validarolvidocontra(){
+    var correo, nuevacontra;
+    nuevacontra = document.getElementById("inputPassForgot").value;
+    correo = document.getElementById("inputEmailForgot").value;
+    confnuevacontrasena = document.getElementById("inputConfirmPassForgot").value;
 
+    exprcorreo = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
+    exprcontrasena = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
 
-
+    console.log("ENTRE");
+    if(nuevacontra === "" || correo === "" || confnuevacontrasena ===! ""){
+        $('#camposobligatoriosalertforgot').show();
+        return false;
+    }else{
+        $('#camposobligatoriosalertforgot').hide();
+    }
+    if(!exprcorreo.test(correo)){
+        $('#emailforgotalert').show();
+        return false;
+    }else{
+        $('#emailforgotalert').hide();
+    }
+    if(nuevacontra !== confnuevacontrasena){
+        $('#passconfforgotalert').show();
+        return false;
+    }else{
+        $('#passconfforgotalert').hide();
+    }
+    if(!exprcontrasena.test(nuevacontra)){
+        $('#passforgotalert').show();
+        return false;
+    }else{
+        $('#passforgotalert').hide();
+    }
+    
 }

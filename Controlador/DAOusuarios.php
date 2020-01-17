@@ -49,6 +49,28 @@
             return true;
         }
     }
+    function validarExistenciUsuario($authusuario){
+        $base=ConexionDB::getInstance($authusuario);
+        $sql = 'CALL validateuserexistent(:correousuario)';
+        $resultado = $base->prepararQuery($sql);
+        $resultado->bindValue(":correousuario",$authusuario->getCorreo());
+        $resultado->execute();
+        $numeroregistro = $resultado->rowCount();
+        if($numeroregistro == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    function cambiarContrasenna($authusuario){
+        $base=ConexionDB::getInstance($authusuario);
+        $sql = 'CALL changepassword(:correousuario,:nuevacontrasenna)';
+        $resultado = $base->prepararQuery($sql);
+        $resultado->bindValue(":correousuario",$authusuario->getCorreo());
+        $resultado->bindValue(":nuevacontrasenna",$authusuario->getContrasenna());
+        $resultado->execute();
+        header("location:../Vista/cambiocontrasennaexitoso.php");
+    }
     function loginUsuario($authusuario){
         //TODO: Mostrar el nombre y los apellidos del usuario que se autentico
         $base=ConexionDB::getInstance();
